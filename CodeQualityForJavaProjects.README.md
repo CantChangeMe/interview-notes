@@ -2,18 +2,18 @@
 # Improving Code Quality for Java Projects
 
 ## What is Code Quality & Why it matters?
-### Reliability:
+1.Reliability:
   Should work consistently without frequent crashes.
-### Consistent Code Style:
+2.Consistent Code Style:
   Should follow consistent code style and naming conventions applicable to the language
-### Maintainable: 
+3.Maintainable: 
   Should be easy to understand. Maintainable code is easy to extend and add new functionality.
-### Well-tested: 
+4.Well-tested: 
   Code that has well-written tests tends to have fewer bugs
-### Efficient:
+5.Efficient:
   Should not use unnecessary resources to perform the desired operations
-### Secure:
+6.Secure:
   Should prevent coding vulnerabilities like SQL injection
-###Lower Technical Debt: 
+7.Lower Technical Debt: 
   Having low technical debt allows teams to move fast and develop new functionality without being slowed down by low quality and non-maintainable code
 
