@@ -46,6 +46,6 @@
         5.Classes with high Cyclomatic Complexity measurements
         6.Incorrect BigDecimal Usage
     </pre>
-   ### Code Coverage Metrics
+   ### JaCoCo
         Tools like JaCoCo can be used to figure out the code coverage.
     
