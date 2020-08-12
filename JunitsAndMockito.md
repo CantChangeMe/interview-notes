@@ -43,8 +43,29 @@ JUinit4:
       @RunWith(Suite.class)
       @SuiteClasses({ArraysTest.class,StringHelperTest.class})
 
-  </pre>
+ 
   
+  Testing a class with a dependency:
+      --By creating stub class.//Stub class is dummy class which fakes real class
+         
+         @Test
+         public void getSpringRelatedToDos(){
+             ToDoService toDoServiceStub = new ToDoServiceStub();
+             ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceStub);
+             Assertions.assertEquals(2, toDoBusiness.getToDosRelatedToSpring("Dummy").size());
+         }
+         
+      --By Mocking the class or interface using Mockito framework
+        
+        @Test
+        public void getSpringRelatedToDosWithMockito(){
+            ToDoService toDoServiceMock = mock(ToDoService.class);
+            when(toDoServiceMock.getToDoList("Dummy")).thenReturn(List.of("Spring is awesome","Welcome to Spring boot","Dance lessons"));
+            ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
+            Assertions.assertEquals(2, toDoBusiness.getToDosRelatedToSpring("Dummy").size());
+        }
+</pre>  
+ 
   ## Static imports
   <pre>
            Static imports are used to save your time and typing. If you hate to type same thing again and again then you may find such imports interesting.
