@@ -32,4 +32,18 @@ JUinit4:
     
   }  
   
+  Run parameterized test
+   Steps:
+      1.@Runwith(Parameterized.class) at class level
+      2.Contructor with input output
+      3.@Parameter annotated method that returns Collection<String []>
+
+  
+   Create suites:
+      @RunWith(Suite.class)
+      @SuiteClasses({ArraysTest.class,StringHelperTest.class})
+
   </pre>
+  
+        
+
