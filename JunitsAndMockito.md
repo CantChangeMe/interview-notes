@@ -45,5 +45,11 @@ JUinit4:
 
   </pre>
   
+  ## Static imports
+  <pre>
+           Static imports are used to save your time and typing. If you hate to type same thing again and again then you may find such imports interesting.
+               1.The import allows the java programmer to access classes of a package without package qualification.
+               2.The static import feature allows to access the static members of a class without the class qualification.
+  </pre>
         
 
