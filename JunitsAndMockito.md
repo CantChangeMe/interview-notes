@@ -64,6 +64,64 @@ JUinit4:
             ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
             Assertions.assertEquals(2, toDoBusiness.getToDosRelatedToSpring("Dummy").size());
         }
+        
+      Stubbing variations with Mockito
+             @Test
+    public void stubMethodWithOneArg(){
+        List<Integer> mockList = mock(List.class);
+        when(mockList.size()).thenReturn(2);
+        assertEquals(2,mockList.size());
+
+    }
+
+    @Test
+    public void stubMethodWithTwoCalls(){
+        List<Integer> mockList = mock(List.class);
+        when(mockList.size()).thenReturn(2).thenReturn(4);
+        assertEquals(2,mockList.size());
+        assertEquals(4, mockList.size());
+
+    }
+
+    @Test
+    public void stubMethodWithMatchers(){
+        List<String> mockList = mock(List.class);
+        when(mockList.get(anyInt())).thenReturn("Hi");
+        assertEquals("Hi",mockList.get(0));
+        assertEquals("Hi",mockList.get(1));
+    }
+
+    @Test
+    public void stubMethodWithException(){
+        List<String> mockList = mock(List.class);
+        when(mockList.get(1)).thenThrow(new RuntimeException("Hi"));
+        Exception exception =  assertThrows(RuntimeException.class,() -> mockList.get(1));
+
+        assertEquals("Hi",exception.getMessage());
+    }
+    
+    BBD style testing
+       Jusy a good way of oganizing a test in the form of
+       Given //Setup part
+       When  //Actual invocation
+       Then  //assertThat part
+       
+          //import static org.mockito.BDDMockito.given;
+          //import static org.hamcrest.CoreMatchers.is;
+          //import static org.junit.Assert.assertThat;
+          
+          @Test
+          public void getSpringRelatedToDosWithMockitoUsingBDD(){
+              //Given
+              ToDoService toDoServiceMock = mock(ToDoService.class);
+              given(toDoServiceMock.getToDoList("Dummy")).willReturn(List.of("Spring is awesome","Welcome to Spring boot","Dance lessons"));
+              ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
+              //When
+              int size = toDoBusiness.getToDosRelatedToSpring("Dummy").size();
+              //Then
+             assertThat (size, is(2));
+          }
+
 </pre>  
  
   ## Static imports
