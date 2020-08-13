@@ -134,7 +134,9 @@ JUinit4:
                  //When
                  toDoBusiness.deleteToDosNotRelatedToSpring("Dummy");
                  //Then
-                 verify(toDoServiceMock ,times(1)).deleteToDo("Dance lessons");
+                 verify(toDoServiceMock ,times(1)).deleteToDo("Dance lessons");//verfiry is non BDD style
+                 then(toDoServiceMock).should().deleteToDo("Dance lessons");// BDD style
+                 then(toDoServiceMock).should(never()).deleteToDo("Spring is awesome");// BDD style
              }
 
              @Test
@@ -149,7 +151,21 @@ JUinit4:
                  verify(toDoServiceMock ,atLeast(1)).deleteToDo("Dance lessons");
              }
          
-         
+         Argument capturing:
+                @Test
+                public void deleteToDosNotRelatedToSpringUsingBDD_ArgumentCapture(){
+                    //Given
+                    ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
+                    ToDoService toDoServiceMock = mock(ToDoService.class);
+                    given(toDoServiceMock.getToDoList("Dummy")).willReturn(List.of("React is also awesome","Welcome to Spring boot","Dance lessons"));
+                    ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
+                    //When
+                    toDoBusiness.deleteToDosNotRelatedToSpring("Dummy");
+                    //Then
+                    then(toDoServiceMock).should(times(2)).deleteToDo(stringArgumentCaptor.capture());//BDD style
+                   // assertThat(stringArgumentCaptor.getValue(), is("Dance lessons"));
+                    assertThat(stringArgumentCaptor.getAllValues().size(), is(2));
+                }
 
 </pre>  
  
