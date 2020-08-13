@@ -121,6 +121,35 @@ JUinit4:
               //Then
              assertThat (size, is(2));
           }
+          
+      Verify calls on mock
+         if a particular method was called in case we are testing a void method.
+         We want to test how many time a particular method was called inside that void method.
+             @Test
+             public void deleteToDosNotRelatedToSpringUsingBDD(){
+                 //Given
+                 ToDoService toDoServiceMock = mock(ToDoService.class);
+                 given(toDoServiceMock.getToDoList("Dummy")).willReturn(List.of("Spring is awesome","Welcome to Spring boot","Dance lessons"));
+                 ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
+                 //When
+                 toDoBusiness.deleteToDosNotRelatedToSpring("Dummy");
+                 //Then
+                 verify(toDoServiceMock ,times(1)).deleteToDo("Dance lessons");
+             }
+
+             @Test
+             public void deleteToDosNotRelatedToSpringUsingBDD_Atleast(){
+                 //Given
+                 ToDoService toDoServiceMock = mock(ToDoService.class);
+                 given(toDoServiceMock.getToDoList("Dummy")).willReturn(List.of("Spring is awesome","Welcome to Spring boot","Dance lessons"));
+                 ToDoBusinessImpl toDoBusiness = new ToDoBusinessImpl(toDoServiceMock);
+                 //When
+                 toDoBusiness.deleteToDosNotRelatedToSpring("Dummy");
+                 //Then
+                 verify(toDoServiceMock ,atLeast(1)).deleteToDo("Dance lessons");
+             }
+         
+         
 
 </pre>  
  
