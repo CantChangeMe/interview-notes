@@ -189,7 +189,10 @@ JUinit4:
             Its better to use @Rule because you can define multiple rules whereas in case of @Runwith(SomeRunner.class)//@Runwith(MockitoJUnitRunner.class). you 
             can have only one runner.
          
-   
+         Using spy 
+            Used to spy on a class.Like mocking a desired method call on the class and letting other methods of class as it is.
+            
+            
 </pre>  
  
   ## Static imports
