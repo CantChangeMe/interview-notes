@@ -109,3 +109,31 @@
             <200,ToDo{userId=1, id=1, title='delectus aut autem', completed=false},[Date:"Sat, 18 Jan 2020 04:09:25 GMT"
             
         
+## How to submit form data for a post request.
+   #### Next, let's look at how to submit a form using the POST method.
+      1.we need to set the “Content-Type” header to application/x-www-form-urlencoded.
+      This makes sure that a large query string can be sent to the server, containing name/value pairs separated by ‘&‘:
+      
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+      2.We can wrap the form variables into a LinkedMultiValueMap:
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
+        map.add("id", "1");
+      3.We build the Request using an HttpEntity instance:
+        ttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+      4.Finally, we can connect to the REST service by calling restTemplate.postForEntity() on the Endpoint: /foos/form
+        
+        ResponseEntity<String> response = restTemplate.postForEntity(
+        fooResourceUrl+"/form", request , String.class);
+ 
+        assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+
+## Use OPTIONS to Get Allowed Operations
+
+        Set<HttpMethod> optionsForAllow = restTemplate.optionsForAllow(fooResourceUrl);
+        HttpMethod[] supportedMethods
+          = {HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE};
+        assertTrue(optionsForAllow.containsAll(Arrays.asList(supportedMethods)));
+
+      
