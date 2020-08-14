@@ -1,8 +1,8 @@
-# A Guide to Spring Boot RestTemplate
+## 1.A Guide to Spring Boot RestTemplate
   Difference microservices talk to each other using REST API calls.
   
-## RestTemplate GET Resource
-   #### Plain JSON
+#### RestTemplate GET Resource
+   ###### Plain JSON
        private void callGetToDoWithString() {
 
           RestTemplate restTemplate = new RestTemplate();
@@ -23,7 +23,7 @@
                 "title": "delectus aut autem",
                 "completed": false
               },[Date:"Sat, 18 Jan 2020 03:39:33 GMT"
-   #### POJO Instead of JSON
+   ###### POJO Instead of JSON
         private void callGetToDoWithPOJO() {
           **
           **
@@ -31,7 +31,7 @@
           **
           **
         }
-## RestTemplate POST Resource
+#### RestTemplate POST Resource
         	private void callPostToDo() {
               RestTemplate restTemplate = new RestTemplate();
 
@@ -56,7 +56,7 @@
           
            HTTP Status Code of 201 (CREATED).
           
-## RestTemplate PUT Resource
+#### RestTemplate PUT Resource
         private void callPutToDo() {
           RestTemplate restTemplate = new RestTemplate();
 
@@ -79,7 +79,7 @@
          Response :
            <200,ToDo{userId=1, id=1, title='Updated ToDo', completed=false},[Date:"Sat, 18 Jan 2020 03:39:34 GMT"
 
-## RestTemplate DELETE Resource
+#### RestTemplate DELETE Resource
         private void callDeleteToDo() {
 
             RestTemplate restTemplate = new RestTemplate();
@@ -98,7 +98,7 @@
         Response:
           <200,{},[Date:"Sat, 18 Jan 2020 03:39:35 GMT", Content-Type:"application/json; charset=utf-8"
           
-## Other Methods for REST calls:
+#### Other Methods for REST calls:
     1.The getForObject() method allows you to directly return the underlying object without the ResponseEntity wrapping.
         ToDo toDo = restTemplate.getForObject(uri, ToDo.class);
         
