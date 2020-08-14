@@ -166,7 +166,30 @@ JUinit4:
                    // assertThat(stringArgumentCaptor.getValue(), is("Dance lessons"));
                     assertThat(stringArgumentCaptor.getAllValues().size(), is(2));
                 }
+         
+         Using @Mocks , @InjectMocks
+            //@SpringBootTest
+            @Runwith(MockitoJUnitRunner.class)
+            class ToDoBusinessImplMockitoInjectTest {
 
+                @Mock
+                ToDoService toDoService;
+
+                @InjectMocks
+                ToDoBusinessImpl toDoBusiness;
+
+                @Test
+                public void getSpringRelatedToDosWithMockito(){
+                    when(toDoService.getToDoList("Dummy")).thenReturn(List.of("Spring is awesome","Welcome to Spring boot","Dance lessons"));
+                    assertEquals(2, toDoBusiness.getToDosRelatedToSpring("Dummy").size());
+                }
+         }
+         
+         @Rule annotation
+            Its better to use @Rule because you can define multiple rules whereas in case of @Runwith(SomeRunner.class)//@Runwith(MockitoJUnitRunner.class). you 
+            can have only one runner.
+         
+   
 </pre>  
  
   ## Static imports
