@@ -32,3 +32,31 @@
   **Content Delivery Networks** – Distributed network of proxy servers and their data centers.
   
   **Remote Service** – Enables the remote access information that resides on a network of IT devices.
+
+#### 4.Cons of Microservice Architecture?
+    1.Increases troubleshooting challenges
+    2.Increases delay due to remote calls
+    3.Increased efforts for configuration and other operations
+    4.Difficult to maintain transaction safety
+    5.Tough to track data across various boundaries
+    6.Difficult to code between services
+
+#### 5.Monolithic vs SOA vs Microservices
+    Monolithic - Signle Unit
+    SOA - Coarse-grained
+    Microservices - fine-grained
+    
+    
+#### What is Spring Cloud?
+  Spring Cloud provides tools for developers to quickly build some of the common patterns in distributed systems 
+  (e.g. configuration management, service discovery, circuit breakers, intelligent routing, leadership election, distributed sessions, cluster state).
+  
+#### What problems are solved by Spring Cloud?
+  While developing distributed microservices with Spring Boot we face few issues which are solved by Spring Cloud.
+
+**The complexity associated with distributed systems** – This includes network issues, Latency overhead, Bandwidth issues, security issues.
+**Ability to handle Service Discovery** – Service discovery allows processes and services in a cluster to find each other and communicate.
+**Solved redundancy issues** – Redundancy issues often occur in distributed systems.
+**Load balancing** – Improves the distribution of workloads across multiple computing resources, such as a computer cluster, network links, central processing units.
+**Reduces performance issues** – Reduces performance issues due to various operational overheads.
+
