@@ -197,7 +197,8 @@ JUinit4:
                2.Cannot mock static methods
                3.Cannot mock equals(), hashCode(). Firstly, you should not mock those methods. Secondly, Mockito defines and depends upon a specific implementation of these                      methods. Redefining them might break Mockito.
                
-            
+         How can you mock static method as Mockito does not allow ?
+            Using another framework called Powermock.
 </pre>  
  
   ## Static imports
