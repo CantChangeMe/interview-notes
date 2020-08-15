@@ -192,6 +192,11 @@ JUinit4:
          Using spy 
             Used to spy on a class.Like mocking a desired method call on the class and letting other methods of class as it is.
             
+         Mockito 2.x specific limitation:
+               1.Cannot mock constructors
+               2.Cannot mock static methods
+               3.Cannot mock equals(), hashCode(). Firstly, you should not mock those methods. Secondly, Mockito defines and depends upon a specific implementation of these                      methods. Redefining them might break Mockito.
+               
             
 </pre>  
  
