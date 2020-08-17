@@ -69,7 +69,12 @@
    HashMap uses Iterator to iterate over values, whereas Hashtable has Enumerator for the same. The Iterator is a successor of Enumerator that eliminates its few drawbacks. For    example, Iterator has a remove() method to remove elements from underlying collections.
    The Iterator is a fail-fast iterator. In other words, it throws a ConcurrentModificationException when the underlying collection is modified while iteratin
    
-### 5.When to Choose HashMap Over Hashtable
+### 6.When to Choose HashMap Over Hashtable
    We should use HashMap for an unsynchronized or single threaded application.
 
    It is worth mentioning that since JDK 1.8, Hashtable has been deprecated. However, ConcurrentHashMap is a great Hashtable replacement. We should consider ConcurrentHashMap to    use in applications with multiple threads.
+
+### 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/CantChangeMe/interview-notes/issues/1#issue-680054187">
+</p>
