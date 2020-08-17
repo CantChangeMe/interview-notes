@@ -76,5 +76,5 @@
 
 ### 7.Difference between HashMap, HashTable ,synchronizedMap and ConcurrentHashMap
 <p align="center">
-  <img width="600" height="400" src="https://user-images.githubusercontent.com/8223432/90375685-e9c3ed00-e092-11ea-95c8-da3800d5c413.PNG">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/90375685-e9c3ed00-e092-11ea-95c8-da3800d5c413.PNG">
 </p>
