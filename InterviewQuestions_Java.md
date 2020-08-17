@@ -74,7 +74,7 @@
 
    It is worth mentioning that since JDK 1.8, Hashtable has been deprecated. However, ConcurrentHashMap is a great Hashtable replacement. We should consider ConcurrentHashMap to    use in applications with multiple threads.
 
-### 
+### 7.Difference between HashMap, HashTable ,synchronizedMap and ConcurrentHashMap
 <p align="center">
-  <img width="460" height="300" src="https://github.com/CantChangeMe/interview-notes/issues/1#issue-680054187">
+  <img width="600" height="400" src="https://user-images.githubusercontent.com/8223432/90375685-e9c3ed00-e092-11ea-95c8-da3800d5c413.PNG">
 </p>
