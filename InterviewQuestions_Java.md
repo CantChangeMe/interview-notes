@@ -1,13 +1,13 @@
 # Java interview questions:
 
-##### 1.How to decide young generation and old generation size for your application?
+### 1.How to decide young generation and old generation size for your application?
    It depends on nature of application.
    If you have lots of temporary objects then there will be lot of minor gc. 
    You can provide arguments **XX:NewRatio=1** to distribute 50% to young generation and 50% to old.
    By default, **NewRatio=2 hence young Generation is 1/3** of total heap.
    Similarly, If you have too many long-lived objects, then you might need to increase the size of tenure space by putting high value of NewRatio.
    
-##### 2.Garbage Collection in java
+### 2.Garbage Collection in java
    JVM Memory is divided into three parts:
    Young and old are part of Heap memory only.
    **Young generation**()
@@ -43,7 +43,7 @@
    Often, Major GCs are slower and less frequent than minor GC.
    
    
-##### Garbage Collection Algorithms?
+### 3.Garbage Collection Algorithms?
    **serial collector**
    It uses single thread to perform all the garbage collection and is suitable for basic application with single processor machines.
    
@@ -52,3 +52,24 @@
    
    **Concurrent MS(Mark swwep GC)** 
     Concurrent collector performs garbage collection with application threads. It is useful for applications which have medium to large datasets and require quick response time.
+### 4.What is difference between Collection.synchronizedMap(map) and ConcurrentHashMap?
+      When you make map thread safe by using Collection.synchronizedMap(map), it locks whole map object, but ConcurrentHashMap does not lock the whole map, it just locks part of       it(Segment).
+      
+### 5.Differences Between Hashtable and HashMap
+   **Synchronization**
+   Firstly, Hashtable is thread-safe and can be shared between multiple threads in the application.
+
+      On the other hand, HashMap is not synchronized and can't be accessed by multiple threads without additional synchronization code. We can use Collections.synchronizedMap()       to make a thread-safe version of a HashMap. We can also just create custom lock code or make the code thread-safe by using the synchronized keyword.
+
+      HashMap is not synchronized, therefore it's faster and uses less memory than Hashtable. Generally, unsynchronized objects are faster than synchronized ones in a single           threaded application.
+      
+   **Null Values**
+   Another difference is null handling. HashMap allows adding one Entry with null as key as well as many entries with null as value. In contrast, Hashtable doesn't allow null at      all.
+   **Iteration Over Elements**
+   HashMap uses Iterator to iterate over values, whereas Hashtable has Enumerator for the same. The Iterator is a successor of Enumerator that eliminates its few drawbacks. For    example, Iterator has a remove() method to remove elements from underlying collections.
+   The Iterator is a fail-fast iterator. In other words, it throws a ConcurrentModificationException when the underlying collection is modified while iteratin
+   
+### 5.When to Choose HashMap Over Hashtable
+   We should use HashMap for an unsynchronized or single threaded application.
+
+   It is worth mentioning that since JDK 1.8, Hashtable has been deprecated. However, ConcurrentHashMap is a great Hashtable replacement. We should consider ConcurrentHashMap to    use in applications with multiple threads.
