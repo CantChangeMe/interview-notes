@@ -91,7 +91,7 @@ You can customize bean name. Check the example here
 
 **@Service** - It is also a specialization of @Component. The classes with business logic are annotated with this annotations and call methods in the repository layer.
 
-**@RestController** - This annotation is a specialized version of @Controller which itself is annotated with @Controller and @ResponseBody. So it automatically adds @Controller and @ResponseBody annotation automatically. So we do not have to add @ResponseBody to our request mapping methods. Read more
+**@RestController** - This annotation is a specialized version of @Controller which itself is annotated with @Controller and @ResponseBody. So it automatically adds @Controller and @ResponseBody annotation automatically. So we do not have to add @ResponseBody to our request mapping methods.
 
 **@Configuration** - It indicates that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime. It's a replacement to the XML based configuration for configuring spring beans. Example:
 
@@ -137,6 +137,60 @@ public class DemoService {
     private CustomService customService;
 }
 ```
+
+## 9. What is Spring Initializr?
+It is a web tool which is provided by Spring on official site. You can create basic Spring Boot project by providing required minimum details for example : language(Java, Groovy, Kotlin), Build tool (Gradle, Maven) etc.
+
+## 10. Ways to configure Common application properties (application.properties)
+Spring Boot properties can be specified inside application.properties or application.yml file
+
+## 11. Difference between application.properties and application.yml
+Both are different ways to configure common application properties. YAML files can’t be loaded via the @PropertySource annotation. So if you need to load values from common properties, you need to use a properties file.
+
+## 12. Difference between application.properties and bootstrap.properties
+bootstrap.properties is required if you're using Spring Cloud and your application's configuration is stored on a remote Spring Cloud Config Server. It is loaded before the application.properties. You need to specify config server URL in bootstrap.properties to fetch properties.
+
+```
+spring.application.name=app-name
+spring.cloud.config.uri=${config.server:http://config-server/context}
+```
+application.properties is specific to Spring Boot applications. Default location of application.properties 
+```
+is /src/main/resources/application.properties
+```
+
+## 13. What is Spring Boot Actuator ?
+Actuator is a plugin or extension to Spring Boot Autoconfigure with a number of additional features to help you monitor and manage your application in production. You can choose to manage and monitor your application by using HTTP endpoints or with JMX. Auditing, health, and metrics gathering can also be automatically applied to your application. Benefit of this is that we can get production grade tools without having to actually implement these features ourselves. To add the actuator to a Maven based project, add the following ‘Starter’ dependency:
+
+```
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+</dependencies>
+```
+
+## 14. What is Profile?
+Application configuration in different kinds of environments, such as dev, QA, prod etc. will be different. We create different profiles to handle this issue and it follows the naming convention application-{profile}.properties. The name of the .properties files for these environment will be as following:
+
+```
+application-dev.properties
+application-qa.properties
+```
+**Activate Profile**: 
+   * You can set a System property (spring.profiles.active) or an OS environment variable SPRING_PROFILES_ACTIVE to current profile to use. 
+   * You can also launch your application with a -D argument (remember to put it before the main class or jar archive), as follow $ java -jar -Dspring.profiles.active=qa project-0.0.1-SNAPSHOT.jar or 
+   * in Spring Boot, you can also set the active profile in application.properties, as follows spring.profiles.active=production
+
+## 15. What is IoC and DI?
+**Inversion of Control (IoC)** - It’s a generic term and implemented in several ways (events, delegates, DI etc.). It means that objects do not create other objects on which they depend. Instead, they get the objects that they need from an outside source for example: a configuration file or framework.
+**Dependency Injection (DI)** - DI is the process of providing the dependencies. It is a form of IoC, where implementations are passed into an object through constructors/setters/service lookup, usually by a framework component.
+
+## 16. Inversion of Control(IoC) Container?
+Interface **org.springframework.context.ApplicationContext** represents the **Spring IoC container**. It is **responsible for instantiating, configuring, and assembling the aforementioned beans and managing their lifecycle**. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code.
+
+
 
 ## 1. How to make spring frameworks log level to DEBUG
   
