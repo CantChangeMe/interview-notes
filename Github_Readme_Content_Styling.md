@@ -65,15 +65,12 @@ git commit
 This site was built using [GitHub Pages](https://pages.github.com/).
 
 * **Lists**
+
 You can make an unordered list by preceding one or more lines of text with - or *.
 
 - George Washington
 - John Adams
 - Thomas Jefferson
-
-* George Washington
-* John Adams
-* Thomas Jefferson
 
 * **Nested Lists**
 
