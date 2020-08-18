@@ -78,3 +78,28 @@
 <p align="center">
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/90375685-e9c3ed00-e092-11ea-95c8-da3800d5c413.PNG">
 </p>
+
+### 8.How to print even and odd numbers using threads in java
+
+### 9.Which design pattern you have used in your project?
+   You can name few design patterns such as Singleton, Observer etc. which you might have used in your project.
+
+### 10.What is double level locking in singleton design pattern?
+   Double level locking in Singleton design pattern  is used to make it thread-safe.
+   
+   public static SingletonInstance getInstance(){
+      if(instace ==  null){
+         synchronized(SingletonInstance.class){
+            if(instance == null){
+               instance = new SingletonInstance();
+            }  
+         }
+      }
+      return instance;
+   }
+  
+  Let’s say two threads(T1 and T2) checked for null and both reached at synchronized (Singleton.class). T1 gets the lock and create instance of Singleton and return. Now T2       enters in a synchronized block, as we have checked for null again, it will not create object again.
+    
+### 10.Question 2. Does not overriding hashCode() method has any performance implication? (answer)
+   This is a good question and opens to all, as per my knowledge, a poor hash code function will result in the frequent collision in HashMap which eventually increases the time    for adding an object into Hash Map.
+   From Java 8 onwards though collision will not impact performance as much as it does in earlier versions because after a threshold the linked list will be replaced by a binary      tree, which will give you O(logN) performance in the worst case as compared to O(n) of a linked list. 
