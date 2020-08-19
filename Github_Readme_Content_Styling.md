@@ -96,7 +96,7 @@ You can add emoji to your writing by typing :EMOJICODE:.
 You can create a new paragraph by leaving a blank line between lines of text.
 
 
-## Adding image 
+## 4. Adding image 
 ```CSS
   <p align="center">
     <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/90593107-c6b94a80-e204-11ea-94ea-0444b0925bcb.PNG">
