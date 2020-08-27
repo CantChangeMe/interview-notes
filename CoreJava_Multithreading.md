@@ -59,4 +59,72 @@ Responsiveness is particularly critical in applications with User Interface.
             }
         });
   ```
-  
+## Thread termination - Why and when?
+ * Thread comsumes resources like mwmory ,kernel resources and CPU cycles.   
+ * If a thread has finished work , but application is still running, we want to clean up the thread's resources.
+ * If a thread is misbehaving and we want to stop it.
+ * The application will not stop as long as one thread is still running.
+
+## Thread.interrupt()
+* If a thread is executing a method that throws **InterruptedException** when it gets interrupted.//Thread.sleep(10000000000) throws InterruptedException
+* If the thread we are trying to interrupt is handling interrupt signal explicitly.
+
+## How to stop a thread using Thread.interrupt()?
+* When we are using a method that responds to interrupt signal.
+```Java
+1.
+public class InterruptedExceptionTest {
+    public static void main(String[] args) {
+        Thread thread = new Thread(new BlockingTask());
+        thread.start();
+        thread.interrupt();
+    }
+}
+
+2.public class BlockingTask implements Runnable{
+    @Override
+    public void run() {
+        try {
+            System.out.println("BlockingTask.run");
+            Thread.sleep(600000);
+            System.out.println("BlockingTask.run2");
+        } catch (InterruptedException e) {
+            System.out.println("Thread is exiting after being interrupted.");
+        }
+    }
+}
+```
+* Or checking our code and handling exceptions ourselves.
+```Java
+ 1. public class Main2 {
+
+    public static void main(String[] args) {
+        Thread thread = new Thread(new LongComputationTask(new BigInteger("200000"), new BigInteger("100000000")));
+
+        thread.start();
+        thread.interrupt();
+    }
+  }
+ 2. private static class LongComputationTask implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(base + "^" + power + " = " + pow(base, power));
+        }
+
+        private BigInteger pow(BigInteger base, BigInteger power) {
+            BigInteger result = BigInteger.ONE;
+
+            for (BigInteger i = BigInteger.ZERO; i.compareTo(power) != 0; i = i.add(BigInteger.ONE)) {
+                if (Thread.currentThread().isInterrupted()) {
+                    System.out.println("Prematurely interrupted computation");
+                    return BigInteger.ZERO;
+                }
+                result = result.multiply(base);
+            }
+
+            return result;
+        }
+   }
+```
+## Another way to stop blocking our application by a thread is to set the thread as demon thread.
+
