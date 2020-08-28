@@ -222,3 +222,40 @@ for example , Fixed Thread Pool Executor
 <p align="center">
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91531115-df72e000-e929-11ea-9227-a8e8e1918a47.PNG">
 </p>
+
+## Stack's properties
+* All the variables passed on the stack belong to a particular thread and other threads have no access to them
+* The stack is allocated statically when the thread is created.
+* Its size is fixed and cannot change at runtime
+* We have to be very careful not to nest too many method calls because if the calling hierarchy is too deep we may run out of
+the memory allocated for that stack and get a stack overflow exception that's particularly a big risk when running a recursive methods.
+
+## What is stored in Heap?
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91557518-39879b80-e952-11ea-8e05-d18ee0b737c1.PNG">
+</p>
+
+##  Heap Memory management
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91557800-c6caf000-e952-11ea-94e7-e5cfa3b66cd6.PNG">
+</p>
+
+## What are stored where?
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91557800-c6caf000-e952-11ea-94e7-e5cfa3b66cd6.PNG">
+</p>
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91556740-d9dcc080-e950-11ea-85de-95a62feeecf8.PNG">
+</p>
+
+## Everything outside the process is also shared between threads
+
+## Why do we need to share resources?
+* Text Editor (IU Thread , **Document saver thread**) // Here **document data structure** is shared between UI thread and Document thread.
+* Work queue ( tasks within the **Work queue** are shared between the **Worker Threads**)
+* Database microservices (**Database connections** are shared between the **Request Threads**)
+
