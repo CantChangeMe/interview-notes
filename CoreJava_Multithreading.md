@@ -207,7 +207,14 @@ for example , Fixed Thread Pool Executor
 * By maintaining a constant number of threads ,we eliminate the need to recreate the threads.
 
 ## Throughtput test using JMeter
+
 <p align="center">
-  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91529990-e7ca1b80-e927-11ea-9fa9-39844afeba76.PNG">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91530155-442d3b00-e928-11ea-8d3c-7ec6f25da499.PNG">
+</p>
+
+## Peformance Analysis -Throughput
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91530775-5196f500-e929-11ea-906b-28196f14cda4.PNG">
 </p>
 
