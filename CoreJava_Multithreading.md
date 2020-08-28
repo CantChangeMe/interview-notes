@@ -155,3 +155,8 @@ This means that when a thread t1 calls t2.join(), then all changes done by t2 ar
 * wait()
 * notify()
 * join()
+
+## Peformance Analysis -Latency vs Threads
+<p align="center">
+  <img width="650" height="300" src="https://user-images.githubusercontent.com/8223432/91524521-10004d00-e91d-11ea-801f-a9db83a6c2ce.PNG">
+</p>
