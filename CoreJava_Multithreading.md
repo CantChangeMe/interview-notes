@@ -158,5 +158,56 @@ This means that when a thread t1 calls t2.join(), then all changes done by t2 ar
 
 ## Peformance Analysis -Latency vs Threads
 <p align="center">
-  <img width="650" height="300" src="https://user-images.githubusercontent.com/8223432/91524521-10004d00-e91d-11ea-801f-a9db83a6c2ce.PNG">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91524521-10004d00-e91d-11ea-801f-a9db83a6c2ce.PNG">
 </p>
+
+*  we can improve the performance and get a significant speed up if the problem can be partitioned
+into multiple subproblems and is performed by multiple threads.
+* We proved that having more threads than cores is counterproductive for a problem that involves only
+computations and no blocking calls.
+* So the problem we want to partition needs to be large enough to make the effort worthwhile.
+
+
+## Inherent cost of parallelization and and aggregation is caused by:
+* Breaking tasks into multiple tasks.
+* Thread creation and passing tasks to threads.
+* Time between thread start and thread getting scheduled.
+* Time until last thread finishes and signals.
+* Time until the aggregating thread runs.
+* Aggregation of the suresults into a single artifact.
+
+
+## Thread pooling:
+* Thread pooling is nothing more than just creating the threads once and reusing them for future tasks
+instead of recreating the threads each and every time from scratch.
+* Once the threads are created they sit in the pool and the tasks are distributed among the threads through a queue each thread is taking tasks from that queue whenever that thread is available.
+* If all the threads are busy the task search is going to stay in the queue and wait for a thread to become available if we keep the threads well busy and utilized and we keep feeding tasks into the queue we
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91526942-61f7a180-e922-11ea-86c9-5ca12bca5e59.PNG">
+</p>
+
+## Thread pool -Implementation
+* JDK comes with a few implementations of thread pools
+for example , Fixed Thread Pool Executor
+
+* Fixed Thread Pool Executor
+```Java
+        int noOfThreads =4;
+        Executor executor = Executors.newFixedThreadPool(noOfThreads);
+
+        Runnable task = ()-> System.out.println("FDf");
+        executor.execute(task);
+```
+
+## Throughput
+* By serving each task independently on a different thread we can improve the performance by a factor of n where 
+* #N  == #Threads == #Cores
+* Performace(xN)
+* By maintaining a constant number of threads ,we eliminate the need to recreate the threads.
+
+## Throughtput test using JMeter
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91529990-e7ca1b80-e927-11ea-9fa9-39844afeba76.PNG">
+</p>
+
