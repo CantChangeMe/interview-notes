@@ -186,7 +186,6 @@ instead of recreating the threads each and every time from scratch.
 <p align="center">
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91526942-61f7a180-e922-11ea-86c9-5ca12bca5e59.PNG">
 </p>
-
 ## Thread pool -Implementation
 * JDK comes with a few implementations of thread pools
 for example , Fixed Thread Pool Executor
@@ -218,3 +217,8 @@ for example , Fixed Thread Pool Executor
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91530775-5196f500-e929-11ea-906b-28196f14cda4.PNG">
 </p>
 
+## Peformance Analysis -Throughput and Latency
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91531115-df72e000-e929-11ea-9227-a8e8e1918a47.PNG">
+</p>
