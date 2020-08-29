@@ -259,3 +259,169 @@ the memory allocated for that stack and get a stack overflow exception that's pa
 * Work queue ( tasks within the **Work queue** are shared between the **Worker Threads**)
 * Database microservices (**Database connections** are shared between the **Request Threads**)
 
+## How do solve Concurrency Challaenges:
+#### Synchronized - Monitor  // By putting sychronized keyword in front of method name.
+* We use it is by declaring one or more methods in a class using the synchronized keyword 
+* when multiple threads are going to try to call these methods on the same object of this class only one thread would be able to execute either of those methods notice
+* that if **thread A** is executing method one **thread B** is deprived from executing both method one and Method two that's because the **synchronized is applied per object** the term for that is called a **monitor**
+
+```Java
+public class ClassWithCriticalSections{
+  
+  public sychronized void m1(){
+  //Thread A executing, Thread B can not access both m1 and m2 as 
+  }
+  
+  public sychronized void m2(){
+  }
+  
+}
+```
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91627028-bd349d00-e9d1-11ea-939e-498a09d35171.PNG">
+</p>
+
+#### Synchronized - Lock // Using aroung a block of code
+ Achieved by using synchronized keyword at block level.
+* Synchronized block is **Reentrant** 
+* That is if **thread A** is accessing a synchronized method while already being in a different synchronized method or block it will be able to access that synchronized method with no problem.
+* Basically a thread cannot prevent itself from entering a critical section
+
+```Java
+    public class InventoryCounter {
+        private int items = 0;
+
+        Object lock = new Object();
+
+        public void increment() {
+            synchronized (this.lock) {
+                items++;
+            }
+        }
+
+        public void decrement() {
+            synchronized (this.lock) {
+                items--;
+            }
+        }
+
+        public int getItems() {
+            synchronized (this.lock) {
+                return items;
+            }
+        }
+    }
+```
+ 
+## Give the example of Atomic operations.
+#### All reference assginments are atomic.
+```Java
+Object a = new Object();
+Object b = new Object();
+a = b; // atomic
+```
+#### Getters and setters are atomic
+#### All assigments to primitive types are safe except for long and double.
+* we can safely read and write to below types **without the need to synchronize **:
+
+int
+short
+byte
+float
+char
+boolean 
+
+#### long and double assignments are are not atominc because the 64 bits long and one write can on left 32 bits and anothe write could be on right 32 bits.
+
+#### Assignments to long and double when declared volatile are atomic.
+volatile double a = 1.0;
+volatile double b = 2.0;
+a = b; //atomic
+
+#### class in the package java.util.concurrent.atomic
+
+## Atmomic operations use case:
+```Java
+public class AtmomicTestRunner {
+    public static void main(String[] args) {
+        Metrics metrics = new Metrics();
+
+        BusinessLogic businessLogicThread1 = new BusinessLogic(metrics);
+
+        BusinessLogic businessLogicThread2 = new BusinessLogic(metrics);
+
+        MetricsPrinter metricsPrinter = new MetricsPrinter(metrics);
+
+        businessLogicThread1.start();
+        businessLogicThread2.start();
+        metricsPrinter.start();
+    }
+
+    public static class MetricsPrinter extends Thread {
+        private Metrics metrics;
+
+        public MetricsPrinter(Metrics metrics) {
+            this.metrics = metrics;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(4);
+                } catch (InterruptedException e) {
+                }
+
+                double currentAverage = metrics.getAverage();
+
+                System.out.println("Current Average is " + currentAverage);
+            }
+        }
+    }
+
+    public static class BusinessLogic extends Thread {
+        private Metrics metrics;
+        private Random random = new Random();
+
+        public BusinessLogic(Metrics metrics) {
+            this.metrics = metrics;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                long start = System.currentTimeMillis();
+
+                try {
+                    Thread.sleep(random.nextInt(2));
+                } catch (InterruptedException e) {
+                }
+
+                long end = System.currentTimeMillis();
+
+                metrics.addSample(end - start);
+            }
+        }
+    }
+
+    public static class Metrics {
+        private long count = 0;
+        private volatile double average = 0.0;
+
+        public synchronized void addSample(long sample) {
+            double currentSum = average * count;
+            count++;
+            average = (currentSum + sample) / count;
+        }
+
+        public double getAverage() {
+            return average;
+        }
+    }
+}
+```
+
+
+
+
+
