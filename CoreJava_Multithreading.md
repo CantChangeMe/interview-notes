@@ -442,6 +442,9 @@ public class AtmomicTestRunner {
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91651074-86c85200-eaa5-11ea-851c-0cb5e3363bf7.PNG">
 </p>
 
+## Difference between wait(1000) and sleep(1)
+Major difference is that wait() releases the lock or monitor while sleep() doesn't releases any lock or monitor while waiting. Wait is used for inter-thread communication while sleep is used to introduce pause on execution
+
 
 
 
