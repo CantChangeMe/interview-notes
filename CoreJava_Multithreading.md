@@ -539,3 +539,18 @@ lock.lock();//new thread will get suspended here. calling interrupt() to wakeup 
 <p align="center">
   <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91655628-8d6bbf00-eacf-11ea-9715-3e19d772caca.PNG">
 </p>
+
+## What are use cases of lockInterruptibly()
+* Watchdog for deadlock detection and recovery.
+* Waking up the threads to do clean up and close the application.
+
+## tryLock() -Use Cases:
+**tryLock()** method for getting a lock is useful in real time applications where suspending a thread is not acceptable.
+
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91655765-d96b3380-ead0-11ea-82e1-ea3feb098921.PNG">
+</p>
+* Video /Image processing.
+* High speed / low latency trading systems.
+* User Intarface applications.
+
