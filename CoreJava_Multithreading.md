@@ -446,6 +446,96 @@ public class AtmomicTestRunner {
 Major difference is that wait() releases the lock or monitor while sleep() doesn't releases any lock or monitor while waiting. Wait is used for inter-thread communication while sleep is used to introduce pause on execution
 
 
+## Conditions for deadlock:
+* Mutual exclusion :
+Only one thread can have exclusive access to a resource at a given moment in our example access to a road was mutually
+exclusive only one train could use a road at a time.
+
+* Hold and wait
+At least one thread is holding your resource and is waiting for another resource in our case we have not one but two threads that hold one road and are waiting for another road 
+
+* Non pre-emptive allocation:
+Our resource cannot be released until the thread using it is done using it in other words no thread can take away the other threads resource it just has to wait
+until the thread holding the resource releases it 
+
+* circular wait:
+Which is the situation we found our threads in when they were in the deadlock one thread was holding Road A and waiting for road B to be
+released while the other thread was holding Road B and was waiting for road
+
+## How do you prevent deadlock?
+By enforcing strict order of lock aquisition prevents deadlock
+
+## Deadlock detection
+* Using a watchdog
+* Thread interruption(not possible with synchronized)
+* tryLock operations(not possible with synchronized)
+
+## Reentrant Lock
+* Works just like synchronized keyword applied on an object.
+* But requires explicit locking and unlocking.
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91654383-cdc63f80-eac5-11ea-863e-14b07771a2ce.PNG">
+</p>
+
+## Reentrant lock- problem we face while using it.
+* Forgetting to unlock
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91654503-e125da80-eac6-11ea-9985-f2e55286ba8b.PNG">
+</p>
+
+* Getting exceptionbefore unlocking
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91654522-1fbb9500-eac7-11ea-9f63-7de30134cbab.PNG">
+</p>
+
+## What is then best way to use Reentrant lock
+* Never forget to unlock
+* Put critical resource in **try** block and unlock the lock in **finally** block.
+```Java
+public class ReetrantLockTest{
+    Lock lock = new Reetrantlock();
+    Resource resource = new Resource();
+    
+    public void getAllResources() throws Exception{
+        lock.lock();
+        try{
+            use(resource);
+        }
+        finally{
+            lock.unlock();
+        }
+    }
+
+```
+
+## Why we need ReentrantLock
+#### 1.Provides helpful Query methods
+* getQueuedThreads(); // returns list of threads waiting for a lock.
+* getOwner(); // returns  thread which currently owns the lock.
+* isHeldByCurrentThread();// checks if the lock is held by current thread.
+* isLocked();//checks if a thread is locked by a thread.
 
 
+#### 2. We can have lock fairness?
+Reentrant lock as well as the synchronized keyword that generally do not guarantee any fairness by default so if we have many threads waiting to
+acquire a lock on a shared object we may have a situation that one thread gets to acquire the lock multiple times while another thread may be starved.
 
+You achieve fairness using:
+* ReentrantLock(true)
+* It may reduce thoughput of the application.
+
+## What is benefit of lockInterruptedibly() ?
+* If a thread tries to aquire the lock held by current thread,it get **Suspended** if we use normal method like below:
+```Java
+Lock lock = new ReentrantLock();
+lock.lock();//new thread will get suspended here. calling interrupt() to wakeup suspended thread does not work and will not wake up until the lock is released.
+
+```
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91655537-e4bd5f80-eace-11ea-8220-dca701da97bf.PNG">
+</p>
+
+* We can wake by using interrupt() method.
+<p align="center">
+  <img width="750" height="400" src="https://user-images.githubusercontent.com/8223432/91655628-8d6bbf00-eacf-11ea-9715-3e19d772caca.PNG">
+</p>
