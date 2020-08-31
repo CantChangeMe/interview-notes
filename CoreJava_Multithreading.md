@@ -554,3 +554,9 @@ lock.lock();//new thread will get suspended here. calling interrupt() to wakeup 
 * High speed / low latency trading systems.
 * User Intarface applications.
 
+## Semaphores
+* Can be used restrict a number of users to a particular resource or group of resource.
+* Unlike locks that allows only one user to access a resource.
+
+
+
