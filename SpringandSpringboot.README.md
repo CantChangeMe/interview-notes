@@ -224,8 +224,7 @@ public class MyBean{
 	}
 	
 }
-````
-
+```
 * DisposableBean Interface
 * beanDestroy() method
 * GlobalContextListener
