@@ -192,21 +192,41 @@ Interface **org.springframework.context.ApplicationContext** represents the **Sp
 
 
 
-## 1. How to make spring frameworks log level to DEBUG
+## 17. How to make spring frameworks log level to DEBUG
   
   logging.level.org.springframework = DUBUG
 
-## 2. What steps spring framework follows when you start the application?
+## 18. What steps spring framework follows when you start the application?
 <pre>
   1.It does component scan for all the beans annotated with @Component,@Respository,@Service etc.
   2.It creates beans for them.
   3.It creates beans for dependencies also and autowires them and autovires them.
  <pre>
 
-## 3. Setter or Constructor injection
+## 19. Setter or Constructor injection
   For injecting mandatory dependencies we use constrcutor injection.For optional dependencies we can use setter injection.
   
-## 4. Do we really need to use @Autowired for setter or constructor? Or even do we need setter or constructor.
+## 20. Do we really need to use @Autowired for setter or constructor? Or even do we need setter or constructor.
     No .We dont need @Autowired annotation on setters or contructor.We dont even need setter or constructor.
     Just use member variable with @Autowired annotaion.
-  
+    
+##  21. Why do we need Spring shutdown callbacks?
+To free used resources.
+We can create using 4 ways:
+* Using annotation @PreDestroy
+```Java
+@Component
+public class MyBean{
+	
+	@PreDestroy
+	public void destroyMethod(){
+		System.out.println("Cleared resources.");
+	}
+	
+}
+````
+
+* DisposableBean Interface
+* beanDestroy() method
+* GlobalContextListener
+
