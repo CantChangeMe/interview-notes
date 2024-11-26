@@ -1,0 +1,83 @@
+1.
+cloned with temp repo
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ git clone https://github.com/CantChangeMe/retail-store-bill-discounts.git temp-repo
+
+2.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ ls
+temp-repo/
+
+3.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
+$ git checkout master
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
+$ ls
+checkstyle.xml  class-diagram/  pom.xml  README.md  src/
+
+
+4.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
+$ git filter-branch --subdirectory-filter src -- --all
+
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
+$ ls
+main/  test/
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ ls
+temp-repo/
+
+5.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ git clone https://github.com/CantChangeMe/load-queue-ingestor.git
+Cloning into 'load-queue-ingestor'...
+remote: Enumerating objects: 4, done.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ ls
+load-queue-ingestor/  temp-repo/
+
+6.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4
+$ cd load-queue-ingestor/
+
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/load-queue-ingestor (main)
+$ git remote add temp-repo ../temp-repo
+
+7.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/load-queue-ingestor (main)
+$ git checkout -b branch-move
+Switched to a new branch 'branch-move'
+
+8.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/load-queue-ingestor (branch-move)
+$ git pull temp-repo master --allow-unrelated-histories
+From ../temp-repo
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ .../com/vivek/retail/app/constants/Category.java   |   5 +
+ .../vivek/retail/app/constants/DiscountType.java   |   5 +
+ .../com/vivek/retail/app/constants/UserType.java   |   5 +
+
+9.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/load-queue-ingestor (branch-move)
+$ git push origin branch-move
+Enumerating objects: 140, done.
+Counting objects: 100% (140/140), done.
+
+10. Create pull request to new repo
+
+11. Merge the pull request.
+
+
+
+5.
+vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
+git remote add temp-repo ../temp-repo
+
+git checkout -b branch-move
+
+git pull temp-repo master --allow-unrelated-histories
+
+git push origin branch-move
+
+
