@@ -68,16 +68,3 @@ Counting objects: 100% (140/140), done.
 
 11. Merge the pull request.
 
-
-
-5.
-vivek@DESKTOP-FDFDFF GDFDFDG /d/Projects/MyGitProjects/new-interview-notes/Demo4/temp-repo (master)
-git remote add temp-repo ../temp-repo
-
-git checkout -b branch-move
-
-git pull temp-repo master --allow-unrelated-histories
-
-git push origin branch-move
-
-
