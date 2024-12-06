@@ -68,3 +68,28 @@ Counting objects: 100% (140/140), done.
 
 11. Merge the pull request.
 
+Taken from datalake project:
+
+  503  git clone https://git.namechanged.io/sds/data-lake.git tmp-dl-repo
+  504  ls
+  505  cd tmp-dl-repo/
+  506  git filter-branch --subdirectory-filter em-dl-service -- --all
+  507   ls
+  508  cd ..
+  509  ls
+  510  git clone https://git.namechanged.io/sds/loan-queue-ingestor.git
+  511  ls
+  512  cd loan-queue-ingestor/
+  513  git remote add LQi  ../tmp-dl-repo
+  514  git checkout -b branch-move
+  515  git pull LQi develop --allow-unrelated-histories
+  516  git diff README.md
+  517  vi README.md
+  518  git status
+  519  git add README.md
+  520  git status
+  521  git commit -m "moved LQI service codebase from data-lake repo to the separate repo"
+  522  git push origin branch-move
+  523  history
+
+
